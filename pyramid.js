@@ -1,12 +1,22 @@
-const showStars = (nbStars, type) => {
-  for (let i = 1; i <= nbStars; i += 1) {
-    console.log(`${type}`.repeat(i))
+const showStars = (nbStars, type, reverse) => {
+  
+  let str = ''
+  if (!reverse) {
+    for (let i = 1; i <= nbStars; ++i) {
+      str += type.repeat(i)
+      if (i !== nbStars) {
+        str += '\n'
+      }
+    }
+  } else {
+    for (let i = nbStars; i >= 1; --i) {
+      str += type.repeat(i)
+      if (i !== 1) {
+        str += '\n'
+      }
+    }
   }
-}
-
-if (process.argv.length != 4) {
-  console.log(`usage: node pyramid.js number and type, exemple: 3 A`)
-  process.exit(1)
+  return str
 }
 
 if (isNaN(process.argv[2])) {
@@ -16,5 +26,16 @@ if (isNaN(process.argv[2])) {
 
 let nb = Number(process.argv[2])
 let type = process.argv[3]
+let reverseSwitch = process.argv[4]
 
-showStars(nb, type)
+const controleReverse = (reverse) => {
+  if (reverse === '-r'){
+    return true
+  } else {
+    return false
+  }
+}
+
+let reverse = controleReverse(reverseSwitch)
+
+console.log(showStars(nb, type, reverse))
