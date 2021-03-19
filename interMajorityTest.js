@@ -1,6 +1,5 @@
 const readlineSync = require('readline-sync')
 
-
 // Check commande line
 if (process.argv.length !== 3) {
   console.log('usage : node majorityTest.js age')
@@ -13,7 +12,6 @@ if (isNaN(process.argv[2])) {
 }
 
 let MAJORITY = Number(process.argv[2])
-
 
 while (true) {
   const userFistName = readlineSync.question('Quelle est votre prénom? ')
