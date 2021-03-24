@@ -14,27 +14,40 @@ if (isNaN(process.argv[2])) {
 const majority = Number(process.argv[2])
 
 while (true) {
+  let name = ''
+  let firstName = ''
+  let age = ''
+
   // get name and check if name is empty
-  const name = readlineSync.question('nom: ')
-  if (name.length === 0) {
-    console.log('Sorry, name is empty')
-    continue
+  while (name.length === 0) {
+    name = readlineSync.question('nom: ')
+    if (name.length === 0) {
+      console.log('Sorry, name is empty')
+    }
   }
+
   // get first name and check if first name is empty
-  const firstName = readlineSync.question('firstName: ')
-  if (firstName.length === 0) {
-    console.log('Sorry, first name is empty')
-    continue
+  while (firstName.length === 0) {
+    firstName = readlineSync.question('firstName: ')
+    if (firstName.length === 0) {
+      console.log('Sorry, first name is empty')
+    }
   }
 
   // get age and check if age is a number
-  const ageStr = readlineSync.question('age: ')
-  if (isNaN(ageStr) || ageStr.length === 0) {
-    console.log(`Sorry, ${ageStr} is not a number`)
-    continue
+  while (age.length === 0 || isNaN(age)) {
+    age = readlineSync.question('age: ')
+    if (age.length === 0) {
+      console.log('Sorry, age is empty')
+      continue
+    }
+    if (isNaN(age)) {
+      console.log(`Sorry, ${age} is not a number`)
+      continue
+    }
   }
 
-  const age = Number(ageStr)
+  age = Number(age)
 
   if (age >= majority) {
     console.log(`${firstName} ${name} vous êtes majeur, vous pouvez voter.`)
